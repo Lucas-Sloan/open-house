@@ -1,0 +1,31 @@
+<!-- views/listings/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Listings</title>
+</head>
+<body>
+    <%- include('../partials/_navbar') %>
+    
+    <h1>Here's All the Listings</h1>
+    
+    <ul>
+        <% listings.forEach((listing) => { %>
+            <li>
+                A listing in <%= listing.city %> 
+                <% if (listing.owner && listing.owner.username) { %>
+                    owned by <%= listing.owner.username %>.
+                <% } else { %>
+                    owner information unavailable.
+                <% } %>
+                <a href="/listings/<%= listing._id %>">View more details</a>
+            </li>
+        <% }) %>
+    </ul>
+    
+    <a href="/listings/new">Add a New Listing</a>
+</body>
+</html>
